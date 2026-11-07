@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b18">
+<title>Science Fest 2026 | Hackathon Assam</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;font-family:Arial,sans-serif}
+:root{--cyan:#00e5ff;--blue:#008cff;--bg:#050b18;--panel:#10243b;--muted:#aabed0}
+body{background:var(--bg);color:white;overflow-x:hidden}
+button,input,select,textarea{font:inherit}
+header{position:fixed;top:0;width:100%;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;background:#030a17ed;backdrop-filter:blur(12px);border-bottom:1px solid #16405c;z-index:1000}
+.logo{font-size:19px;font-weight:bold;color:var(--cyan)}
+nav{display:flex;gap:20px}
+nav a{color:white;text-decoration:none;font-size:13px}
+nav a:hover{color:var(--cyan)}
+.menu{display:none;background:none;border:0;color:var(--cyan);font-size:25px}
+.hero{min-height:100vh;padding:145px 20px 80px;display:flex;justify-content:center;align-items:center;text-align:center;position:relative;background:radial-gradient(ellipse at center,#123c62,#081a32 48%,#050b18 85%)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#00cfff0b 1px,transparent 1px),linear-gradient(90deg,#00cfff0b 1px,transparent 1px);background-size:45px 45px}
+.hero-content{position:relative}
+.tag{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);padding:10px 22px;border-radius:30px;letter-spacing:3px;font-size:12px;margin-bottom:28px}
+.hero h1{font-size:clamp(45px,9vw,95px);line-height:1.05;letter-spacing:3px;text-shadow:0 0 30px #00bfff66}
+.hero h1 span,.cyan{color:var(--cyan)}
+.hero p{max-width:680px;margin:25px auto;color:#c3d5e6;line-height:1.9}
+.hero-info{color:var(--cyan);line-height:2;margin:25px 0}
+.btn{display:inline-block;padding:14px 27px;background:var(--cyan);color:#00111e;border:0;border-radius:6px;font-weight:bold;text-decoration:none;cursor:pointer;transition:.25s}
+.btn:hover{background:white;transform:translateY(-3px);box-shadow:0 0 20px #00d9ff66}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+section{padding:85px 7%}
+.heading{text-align:center;margin-bottom:45px}
+.heading small{color:var(--cyan);letter-spacing:4px}
+.heading h2{font-size:clamp(29px,5vw,46px);margin:17px 0}
+.heading p{color:var(--muted);line-height:1.8}
+.countdown-section{text-align:center;background:#071629;border-block:1px solid #123b55}
+.countdown{display:flex;justify-content:center;flex-wrap:wrap;gap:13px;margin:30px 0}
+.timebox{min-width:95px;padding:18px;background:#102943;border:1px solid #176080;border-radius:9px}
+.timebox strong{display:block;font-size:32px;color:var(--cyan)}
+.timebox span{font-size:10px;color:var(--muted);letter-spacing:2px}
+.about{background:#091426;text-align:center}
+.about p{max-width:850px;margin:auto;color:#c4d3e5;line-height:2}
+.arena{background:radial-gradient(ellipse at top,#123454,#071321 55%,#030812)}
+.arena-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{padding:30px 24px;min-height:270px;border:1px solid #174363;border-radius:13px;background:linear-gradient(145deg,#112941,#071426);transition:.3s}
+.card:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 10px 30px #00cfff22}
+.card .emoji{font-size:40px;margin-bottom:18px}
+.card small{color:var(--cyan);letter-spacing:2px}
+.card h3{margin:15px 0}
+.card p{font-size:14px;line-height:1.8;color:var(--muted)}
+.card .label{display:inline-block;margin-top:20px;padding:7px 10px;border:1px solid #16728a;color:var(--cyan);font-size:10px;letter-spacing:1px}
+.schedule{background:#091426}
+.event{max-width:750px;margin:15px auto;padding:22px;background:#10243b;border-left:4px solid var(--cyan);border-radius:5px}
+.event h3{color:var(--cyan);margin-bottom:8px}
+.event p{color:var(--muted);line-height:1.7}
+.register{background:radial-gradient(circle at center,#10304c,#050b18)}
+.form{max-width:620px;margin:auto;padding:32px;background:#0d1c31;border:1px solid #176080;border-radius:13px}
+.form label{display:block;color:var(--cyan);font-size:13px;margin-top:16px}
+.form input,.form select,.form textarea,.searchbox{width:100%;padding:13px;margin-top:8px;background:#071426;color:white;border:1px solid #31506c;border-radius:6px;outline:none}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--cyan)}
+.form button{width:100%;margin-top:24px}
+#message{text-align:center;margin-top:18px;line-height:1.7;color:#00ffae}
+.note{text-align:center;color:var(--muted);font-size:12px;line-height:1.7;margin-top:14px}
+.contact{background:linear-gradient(140deg,#071629,#0b243d);text-align:center}
+.contact-grid{max-width:650px;margin:35px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.contact-card{padding:27px;background:#102943;border:1px solid #176080;border-radius:12px}
+.contact-card .emoji{font-size:35px}
+.contact-card h3{color:var(--cyan);margin:13px}
+.contact-card p{overflow-wrap:anywhere;font-size:14px}
+.contact-card a{margin-top:18px}
+footer{text-align:center;padding:35px 15px;background:#020711;color:#8299b1;line-height:2;font-size:13px}
+footer strong{color:var(--cyan)}
+.admin-link{margin-top:15px;background:none;border:1px solid #31506c;color:#aabed0;padding:8px 14px;border-radius:5px;cursor:pointer}
+.admin-link:hover{color:var(--cyan);border-color:var(--cyan)}
+
+/* ADMIN */
+.admin-overlay{display:none;position:fixed;inset:0;z-index:2000;background:#000d1c;padding:20px;overflow-y:auto}
+.admin-overlay.active{display:block}
+.admin-panel{max-width:1050px;margin:30px auto;background:#09182b;border:1px solid #176080;border-radius:12px;padding:25px}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.admin-top h2{color:var(--cyan)}
+.close{background:#a32635;color:white;border:0;border-radius:5px;padding:10px 15px;cursor:pointer}
+.login-box{max-width:400px;margin:70px auto;text-align:center}
+.login-box input{width:100%;padding:13px;background:#071426;border:1px solid #31506c;color:white;border-radius:5px;margin:15px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:13px;margin:22px 0}
+.stat{padding:20px;background:#102943;border:1px solid #176080;border-radius:8px}
+.stat strong{font-size:27px;color:var(--cyan);display:block;margin-top:8px}
+.admin-controls{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.admin-controls input,.admin-controls select{flex:1;min-width:160px;padding:12px;background:#071426;color:white;border:1px solid #31506c;border-radius:5px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:750px}
+th,td{padding:13px;border-bottom:1px solid #23415a;text-align:left;font-size:13px}
+th{color:var(--cyan)}
+td{color:#d2deeb}
+.delete-btn{background:#a32635;color:white;border:0;padding:7px 10px;border-radius:4px;cursor:pointer}
+.empty{text-align:center;color:var(--muted);padding:30px}
+.export-btn{background:#087d65;color:white;padding:11px 16px;border:0;border-radius:5px;cursor:pointer}
+@media(max-width:800px){
+ .menu{display:block}
+ nav{display:none;position:absolute;top:60px;left:0;width:100%;padding:22px;background:#071426;flex-direction:column;text-align:center}
+ nav.active{display:flex}
+ section{padding:70px 6%}
+ .form{padding:22px}
+ .admin-panel{padding:16px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">⚛ SCIENCE FEST 2026</div>
+ <button class="menu" id="menuBtn">☰</button>
+ <nav id="nav">
+  <a href="#home">HOME</a>
+  <a href="#about">ABOUT</a>
+  <a href="#events">CATEGORIES</a>
+  <a href="#schedule">SCHEDULE</a>
+  <a href="#register">REGISTER</a>
+  <a href="#contact">CONTACT</a>
+ </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="home">
+ <div class="hero-content">
+  <div class="tag">HACKATHON ASSAM 2026</div>
+  <h1>SCIENCE FEST<br><span>2026</span></h1>
+  <p>Imagine. Innovate. Inspire.<br>
+  A celebration of science, technology, creativity and innovation.
+  Bring your ideas to life and become a part of the future.</p>
+  <div class="hero-info">
+   📅 30 NOVEMBER – 5 DECEMBER 2026<br>
+   📍 DIPHU CLUB, KARBI ANGLONG, ASSAM
+  </div>
+  <a href="#register" class="btn">REGISTER NOW →</a>
+ </div>
+</div>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section">
+ <h2 class="cyan" id="countTitle">THE COUNTDOWN IS ON!</h2>
+ <p style="color:#aabed0;margin-top:12px">Your science adventure awaits.</p>
+ <div class="countdown" id="countdown">
+  <div class="timebox"><strong id="days">00</strong><span>DAYS</span></div>
+  <div class="timebox"><strong id="hours">00</strong><span>HOURS</span></div>
+  <div class="timebox"><strong id="minutes">00</strong><span>MINUTES</span></div>
+  <div class="timebox"><strong id="seconds">00</strong><span>SECONDS</span></div>
+ </div>
+ <p class="note">
+  Registration: 10 November – 26 November 2026<br>
+  Science Fest: 30 November – 5 December 2026
+ </p>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+ <div class="heading">
+  <small>OUR VISION</small>
+  <h2>ABOUT <span class="cyan">THE FEST</span></h2>
+  <p>Where curiosity meets innovation</p>
+ </div>
+ <p>
+  Science Fest 2026 is a platform for students, innovators,
+  developers and aspiring scientists to showcase creativity
+  and explore the power of technology. As part of Hackathon
+  Assam 2026, this event brings together curious minds to
+  experiment, collaborate, discover and develop innovative ideas.
+  From robotics and artificial intelligence to environmental
+  science and space exploration, discover new possibilities
+  and turn imagination into reality.
+ </p>
+</section>
+
+<!-- CATEGORIES -->
+<section class="arena" id="events">
+ <div class="heading">
+  <small>EXPLORE • EXPERIMENT • INNOVATE</small>
+  <h2>THE INNOVATION <span class="cyan">ARENA</span></h2>
+  <p>Six exciting domains. Unlimited possibilities.</p>
+ </div>
+
+ <div class="arena-grid">
+  <div class="card">
+   <div class="emoji">🤖</div><small>01 / ENGINEERING</small>
+   <h3>ROBOTICS & AUTOMATION</h3>
+   <p>Explore intelligent robotics, automation and creative engineering solutions.</p>
+   <span class="label">BUILD THE FUTURE</span>
+  </div>
+  <div class="card">
+   <div class="emoji">💻</div><small>02 / TECHNOLOGY</small>
+   <h3>AI & DIGITAL INNOVATION</h3>
+   <p>Explore artificial intelligence, coding, software development and smart applications.</p>
+   <span class="label">CODE YOUR IDEAS</span>
+  </div>
+  <div class="card">
+   <div class="emoji">🌿</div><small>03 / ENVIRONMENT</small>
+   <h3>GREEN SCIENCE</h3>
+   <p>Discover sustainability, biodiversity conservation and solutions for a greener Assam.</p>
+   <span class="label">INNOVATE FOR EARTH</span>
+  </div>
+  <div class="card">
+   <div class="emoji">⚡</div><small>04 / ENERGY</small>
+   <h3>FUTURE ENERGY</h3>
+   <p>Explore solar power, renewable energy and next-generation energy concepts.</p>
+   <span class="label">POWER TOMORROW</span>
+  </div>
+  <div class="card">
+   <div class="emoji">🔬</div><small>05 / DISCOVERY</small>
+   <h3>SCIENCE & EXPERIMENTS</h3>
+   <p>Present scientific models, experiments, physics, chemistry and discoveries.</p>
+   <span class="label">QUESTION EVERYTHING</span>
+  </div>
+  <div class="card">
+   <div class="emoji">🚀</div><small>06 / FUTURE THINKING</small>
+   <h3>SPACE & INNOVATION</h3>
+   <p>Explore astronomy, aerospace concepts, space technology and futuristic inventions.</p>
+   <span class="label">BEYOND LIMITS</span>
+  </div>
+ </div>
+ <p class="note">Proposed competition categories – subject to organizer confirmation.</p>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+ <div class="heading">
+  <small>THE EXPERIENCE</small>
+  <h2>EVENT <span class="cyan">HIGHLIGHTS</span></h2>
+  <p>Six days of science, creativity and innovation.</p>
+ </div>
+ <div class="event"><h3>01. OPENING CEREMONY</h3><p>Welcome address and inauguration of Science Fest 2026.</p></div>
+ <div class="event"><h3>02. HACKATHON CHALLENGE</h3><p>Participants collaborate and develop innovative solutions.</p></div>
+ <div class="event"><h3>03. SCIENCE EXHIBITION</h3><p>Explore scientific models, experiments and discoveries.</p></div>
+ <div class="event"><h3>04. ROBOTICS & TECHNOLOGY</h3><p>Discover engineering projects and technological ideas.</p></div>
+ <div class="event"><h3>05. PROJECT PRESENTATIONS</h3><p>Participants demonstrate their projects and explain their ideas.</p></div>
+ <div class="event"><h3>06. AWARDS & CLOSING CEREMONY</h3><p>Recognition of outstanding projects and participants.</p></div>
+ <p class="note">Indicative event sequence. Detailed timings will be announced.</p>
+</section>
+
+<!-- REGISTRATION -->
+<section class="register" id="register">
+ <div class="heading">
+  <small>YOUR JOURNEY STARTS HERE</small>
+  <h2>JOIN THE <span class="cyan">FEST!</span></h2>
+  <p>Register for Science Fest 2026.</p>
+ </div>
+
+ <form class="form" id="registrationForm">
+  <label>FULL NAME *</label>
+  <input id="name" type="text" maxlength="100" placeholder="Enter your full name" required>
+
+  <label>EMAIL ADDRESS *</label>
+  <input id="email" type="email" maxlength="150" placeholder="Enter your email" required>
+
+  <label>PHONE NUMBER *</label>
+  <input id="phone" type="tel" pattern="[0-9+\-\s]{10,15}" placeholder="Enter your phone number" required>
+
+  <label>SCHOOL / COLLEGE *</label>
+  <input id="school" type="text" maxlength="150" placeholder="Enter institution name" required>
+
+  <label>SELECT CATEGORY *</label>
+  <select id="category" required>
+   <option value="">Choose your category</option>
+   <option>Robotics & Automation</option>
+   <option>AI & Digital Innovation</option>
+   <option>Green Science</option>
+   <option>Future Energy</option>
+   <option>Science & Experiments</option>
+   <option>Space & Innovation</option>
+  </select>
+
+  <label>PROJECT IDEA / DESCRIPTION</label>
+  <textarea id="idea" rows="4" maxlength="1000" placeholder="Tell us about your project or idea"></textarea>
+
+  <button type="submit" class="btn" id="submitBtn">SUBMIT REGISTRATION →</button>
+  <div id="message" aria-live="polite"></div>
+  <p class="note">Registration: 10 November – 26 November 2026.</p>
+ </form>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+ <div class="heading">
+  <small>CONNECT WITH THE ORGANIZERS</small>
+  <h2>LET'S CREATE <span class="cyan">SOMETHING BIG.</span></h2>
+  <p>Have questions? Contact us for event and registration enquiries.</p>
+ </div>
+
+ <div class="contact-grid">
+  <div class="contact-card">
+   <div class="emoji">📧</div>
+   <h3>EMAIL US</h3>
+   <p>bishalborah443@gmail.com</p>
+   <a class="btn" href="mailto:bishalborah443@gmail.com">SEND EMAIL</a>
+  </div>
+  <div class="contact-card">
+   <div class="emoji">📞</div>
+   <h3>CALL US</h3>
+   <p>+91 6000597789</p>
+   <a class="btn" href="tel:+916000597789">CALL NOW</a>
+  </div>
+ </div>
+
+ <h3 class="cyan">📍 EVENT VENUE</h3>
+ <p style="margin:12px;color:#c4d3e5">Diphu Club, Karbi Anglong, Assam</p>
+ <a class="btn" target="_blank" rel="noopener"
+ href="https://www.google.com/maps/search/?api=1&query=Diphu+Club+Karbi+Anglong+Assam">VIEW LOCATION →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+ <h2 style="color:#00e5ff">⚛ SCIENCE FEST 2026</h2>
+ <p>HACKATHON ASSAM 2026</p>
+ <p>Imagine. Innovate. Inspire.</p>
+ <p>30 November – 5 December 2026</p>
+ <p>Diphu Club, Karbi Anglong, Assam</p>
+ <button class="admin-link" id="openAdmin">⚙ ORGANIZER DASHBOARD</button>
+ <p style="margin-top:20px">© 2026 Science Fest. All Rights Reserved.</p>
+</footer>
+
+<!-- ADMIN DASHBOARD -->
+<div class="admin-overlay" id="adminOverlay">
+ <div class="admin-panel">
+  <div class="admin-top">
+   <h2>⚙ ORGANIZER DASHBOARD</h2>
+   <button class="close" id="closeAdmin">CLOSE ✕</button>
+  </div>
+
+  <div id="loginArea" class="login-box">
+   <h2 class="cyan">ADMIN ACCESS</h2>
+   <p style="color:#aabed0;margin-top:12px">Enter your demo admin PIN.</p>
+   <input type="password" id="adminPin" placeholder="Enter admin PIN">
+   <button class="btn" id="loginBtn">LOGIN</button>
+   <p id="loginMessage" style="color:#ff7272;margin-top:15px"></p>
+   <p class="note">Demo PIN: SF2026</p>
+  </div>
+
+  <div id="dashboard" style="display:none">
+   <div class="admin-top">
+    <div>
+     <h2>REGISTRATION MANAGEMENT</h2>
+     <p style="color:#aabed0;margin-top:8px">Science Fest 2026 participant records</p>
+    </div>
+    <button class="close" id="logoutBtn">LOG OUT</button>
+   </div>
+
+   <div class="stats">
+    <div class="stat">TOTAL REGISTRATIONS<strong id="totalCount">0</strong></div>
+    <div class="stat">HACKATHON / AI<strong id="techCount">0</strong></div>
+    <div class="stat">ROBOTICS<strong id="roboticsCount">0</strong></div>
+    <div class="stat">OTHER CATEGORIES<strong id="otherCount">0</strong></div>
+   </div>
+
+   <div class="admin-controls">
+    <input type="search" id="searchInput" placeholder="Search name, email or institution">
+    <select id="filterCategory">
+     <option value="">All categories</option>
+     <option>Robotics & Automation</option>
+     <option>AI & Digital Innovation</option>
+     <option>Green Science</option>
+     <option>Future Energy</option>
+     <option>Science & Experiments</option>
+     <option>Space & Innovation</option>
+    </select>
+   </div>
+
+   <div class="admin-controls">
+    <button class="export-btn" id="exportBtn">⬇ EXPORT CSV</button>
+    <button class="close" id="clearBtn">CLEAR ALL RECORDS</button>
+   </div>
+
+   <div class="table-wrap">
+    <table>
+     <thead>
+      <tr>
+       <th>REGISTRATION ID</th>
+       <th>NAME</th>
+       <th>EMAIL</th>
+       <th>PHONE</th>
+       <th>INSTITUTION</th>
+       <th>CATEGORY</th>
+       <th>IDEA</th>
+       <th>ACTION</th>
+      </tr>
+     </thead>
+     <tbody id="registrationRows"></tbody>
+    </table>
+   </div>
+   <p id="emptyMessage" class="empty">No registrations found.</p>
+   <p class="note">These records are stored only in this browser.</p>
+  </div>
+ </div>
+</div>
+
+<script>
+// =================================
+// CONFIGURATION
+// =================================
+
+const ADMIN_PIN = "SF2026";
+
+const STORAGE_KEY = "scienceFest2026Registrations";
+
+const OPEN_DATE = new Date("2026-11-10T00:00:00+05:30");
+const CLOSE_DATE = new Date("2026-11-27T00:00:00+05:30");
+const FEST_START = new Date("2026-11-30T00:00:00+05:30");
+const FEST_END = new Date("2026-12-06T00:00:00+05:30");
+
+const $ = id => document.getElementById(id);
+
+// =================================
+// MOBILE NAVIGATION
+// =================================
+
+$("menuBtn").addEventListener("click", () => {
+ $("nav").classList.toggle("active");
+});
+
+document.querySelectorAll("nav a").forEach(link => {
+ link.addEventListener("click", () => {
+  $("nav").classList.remove("active");
+ });
+});
+
+// =================================
+// COUNTDOWN
+// =================================
+
+function updateCountdown() {
+ const now = new Date();
+ let target;
+ let title;
+
+ if (now < OPEN_DATE) {
+  target = OPEN_DATE;
+  title = "REGISTRATION OPENS IN";
+ } else if (now < CLOSE_DATE) {
+  target = CLOSE_DATE;
+  title = "REGISTRATION CLOSES IN";
+ } else if (now < FEST_START) {
+  target = FEST_START;
+  title = "SCIENCE FEST BEGINS IN";
+ } else if (now < FEST_END) {
+  target = FEST_END;
+  title = "FEST CONCLUDES IN";
+ } else {
+  $("countTitle").textContent = "THANK YOU FOR JOINING SCIENCE FEST 2026!";
+  $("countdown").style.display = "none";
+  return;
+ }
+
+ $("countTitle").textContent = title;
+
+ const distance = Math.max(0, target - now);
+
+ $("days").textContent = String(Math.floor(distance / 86400000)).padStart(2,"0");
+ $("hours").textContent = String(Math.floor(distance % 86400000 / 3600000)).padStart(2,"0");
+ $("minutes").textContent = String(Math.floor(distance % 3600000 / 60000)).padStart(2,"0");
+ $("seconds").textContent = String(Math.floor(distance % 60000 / 1000)).padStart(2,"0");
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+// =================================
+// REGISTRATION STORAGE
+// =================================
+
+function getRegistrations() {
+ try {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  return Array.isArray(data) ? data : [];
+ } catch {
+  return [];
+ }
+}
+
+function saveRegistrations(data) {
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+}
+
+function updateRegistrationStatus() {
+ const now = new Date();
+
+ if (now < OPEN_DATE) {
+  $("submitBtn").disabled = true;
+  $("submitBtn").textContent = "REGISTRATION OPENS 10 NOVEMBER";
+  $("message").textContent = "Registration has not opened yet.";
+ } else if (now >= CLOSE_DATE) {
+  $("submitBtn").disabled = true;
+  $("submitBtn").textContent = "REGISTRATION CLOSED";
+  $("message").textContent = "The registration deadline has passed.";
+ } else {
+  $("submitBtn").disabled = false;
+  $("submitBtn").textContent = "SUBMIT REGISTRATION →";
+  $("message").textContent = "";
+ }
+}
+
+updateRegistrationStatus();
+setInterval(updateRegistrationStatus,30000);
+
+// =================================
+// SUBMIT REGISTRATION
+// =================================
+
+$("registrationForm").addEventListener("submit", event => {
+ event.preventDefault();
+
+ const now = new Date();
+
+ if (now < OPEN_DATE || now >= CLOSE_DATE) {
+  $("message").textContent = "Registration is currently closed.";
+  updateRegistrationStatus();
+  return;
+ }
+
+ const registration = {
+  id: "SF2026-" + Date.now().toString(36).toUpperCase(),
+  name: $("name").value.trim(),
+  email: $("email").value.trim(),
+  phone: $("phone").value.trim(),
+  school: $("school").value.trim(),
+  category: $("category").value,
+  idea: $("idea").value.trim(),
+  submittedAt: now.toISOString()
+ };
+
+ if (!registration.name || !registration.email ||
+     !registration.phone || !registration.school ||
+     !registration.category) {
+  $("message").textContent = "Please fill in all required fields.";
+  return;
+ }
+
+ try {
+  const registrations = getRegistrations();
+
+  registrations.push(registration);
+  saveRegistrations(registrations);
+
+  $("message").textContent =
+   "Registration saved! Your demo ID: " + registration.id;
+
+  $("registrationForm").reset();
+
+ } catch(error) {
+  $("message").textContent = "Unable to save registration.";
+ }
+});
+
+// =================================
+// ADMIN PANEL
+// =================================
+
+$("openAdmin").addEventListener("click", () => {
+ $("adminOverlay").classList.add("active");
+});
+
+$("closeAdmin").addEventListener("click", () => {
+ $("adminOverlay").classList.remove("active");
+});
+
+$("loginBtn").addEventListener("click", () => {
+ if ($("adminPin").value === ADMIN_PIN) {
+  $("loginArea").style.display = "none";
+  $("dashboard").style.display = "block";
+  $("loginMessage").textContent = "";
+  $("adminPin").value = "";
+  renderDashboard();
+ } else {
+  $("loginMessage").textContent = "Incorrect PIN. Try again.";
+ }
+});
+
+$("adminPin").addEventListener("keydown", event => {
+ if (event.key === "Enter") $("loginBtn").click();
+});
+
+$("logoutBtn").addEventListener("click", () => {
+ $("dashboard").style.display = "none";
+ $("loginArea").style.display = "block";
+});
+
+// =================================
+// RENDER ADMIN DASHBOARD
+// =================================
+
+function makeCell(value) {
+ const td = document.createElement("td");
+ td.textContent = value || "-";
+ return td;
+}
+
+function renderDashboard() {
+ const all = getRegistrations();
+ const tech = all.filter(x => x.category === "AI & Digital Innovation").length;
+ const robotics = all.filter(x => x.category === "Robotics & Automation").length;
+
+ $("totalCount").textContent = all.length;
+ $("techCount").textContent = tech;
+ $("roboticsCount").textContent = robotics;
+ $("otherCount").textContent = all.length - tech - robotics;
+
+ const search = $("searchInput").value.toLowerCase().trim();
+ const filter = $("filterCategory").value;
+
+ const filtered = all.filter(item => {
+  const text = [
+   item.name,item.email,item.school,item.phone,item.id
+  ].join(" ").toLowerCase();
+
+  return text.includes(search) &&
+   (!filter || item.category === filter);
+ });
+
+ const tbody = $("registrationRows");
+ tbody.replaceChildren();
+
+ $("emptyMessage").style.display = filtered.length ? "none" : "block";
+
+ filtered.forEach(item => {
+  const tr = document.createElement("tr");
+
+  [
+   item.id,item.name,item.email,item.phone,
+   item.school,item.category,item.idea
+  ].forEach(value => tr.appendChild(makeCell(value)));
+
+  const actionCell = document.createElement("td");
+  const deleteButton = document.createElement("button");
+
+  deleteButton.className = "delete-btn";
+  deleteButton.textContent = "DELETE";
+
+  deleteButton.addEventListener("click", () => {
+   if (!confirm("Delete this registration?")) return;
+
+   saveRegistrations(
+    getRegistrations().filter(x => x.id !== item.id)
+   );
+
+   renderDashboard();
+  });
+
+  actionCell.appendChild(deleteButton);
+  tr.appendChild(actionCell);
+  tbody.appendChild(tr);
+ });
+}
+
+$("searchInput").addEventListener("input",renderDashboard);
+$("filterCategory").addEventListener("change",renderDashboard);
+
+// =================================
+// EXPORT CSV
+// =================================
+
+$("exportBtn").addEventListener("click", () => {
+ const registrations = getRegistrations();
+
+ if (!registrations.length) {
+  alert("There are no registrations to export.");
+  return;
+ }
+
+ const columns = [
+  "id","name","email","phone","school",
+  "category","idea","submittedAt"
+ ];
+
+ function escapeCSV(value) {
+  let text = String(value ?? "");
+
+  if (/^[=+\-@\t\r]/.test(text)) {
+   text = "'" + text;
+  }
+
+  return '"' + text.replace(/"/g,'""') + '"';
+ }
+
+ const csv = [
+  columns.map(escapeCSV).join(","),
+  ...registrations.map(row =>
+   columns.map(col => escapeCSV(row[col])).join(",")
+  )
+ ].join("\r\n");
+
+ const blob = new Blob(["\uFEFF" + csv], {
+  type:"text/csv;charset=utf-8;"
+ });
+
+ const url = URL.createObjectURL(blob);
+ const link = document.createElement("a");
+
+ link.href = url;
+ link.download = "ScienceFest2026-Registrations.csv";
+ link.click();
+
+ URL.revokeObjectURL(url);
+});
+
+// =================================
+// CLEAR ALL RECORDS
+// =================================
+
+$("clearBtn").addEventListener("click", () => {
+ if (!confirm("Are you sure? This deletes ALL saved registrations from this browser.")) return;
+
+ saveRegistrations([]);
+ renderDashboard();
+});
+
+</script>
+</body>
+</html>
